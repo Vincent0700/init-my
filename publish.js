@@ -4,6 +4,7 @@ const fs = require('fs');
 const ora = require('ora');
 const chalk = require('chalk');
 const process = require('child_process');
+const npmLatest = require('npm-latest');
 const utils = require('./src/utils');
 const pkg = require('./package.json');
 
@@ -11,7 +12,13 @@ const pkg = require('./package.json');
  * Choose version type
  */
 async function selectVersion() {
-  const versions = pkg.version.split('.').map((t) => parseInt(t));
+  // fetch latest npm package version
+  const spinner = ora('Fetch npm version').start();
+  const info = await npmLatest.getLatest('init-my');
+  spinner.succeed(`Fetch npm version ${chalk.yellowBright(info.version)}`);
+
+  // choose version type
+  const versions = info.version.split('.').map((t) => parseInt(t));
   const versionTypeChoices = ['major', 'minor', 'patch'];
   const versionType = await utils.promot({
     type: 'list',
@@ -35,7 +42,17 @@ async function rewritePackage() {
   spinner.succeed();
 }
 
+/**
+ * Publish package
+ */
+async function publishPackage() {
+  const spinner = ora('Publish package').start();
+  process.execSync('npm publish');
+  spinner.succeed();
+}
+
 (async () => {
   await selectVersion();
   await rewritePackage();
+  await publishPackage();
 })();

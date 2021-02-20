@@ -42,12 +42,12 @@ function fetchRepo(url, dirname) {
 }
 
 /**
- * Async Compile template
+ * Compile template
  * @param {string} filepath
  * @param {object} params
  */
 function renderSync(filepath, params) {
-  const repath = path.join(params.name, 'package.json');
+  const repath = path.join(params.name, filepath);
   const content = fs.readFileSync(repath, { encoding: 'utf-8' });
   const compiled = handlebars.compile(content)(params);
   fs.writeFileSync(repath, compiled);
@@ -59,9 +59,12 @@ function renderSync(filepath, params) {
  * @param {object} params
  */
 function renderHtmlWebpackTemplate(params) {
+  const spinner = ora('Initializing project ...').start();
   renderSync('package.json', params);
   renderSync('package-lock.json', params);
   renderSync('README.md', params);
+  renderSync('public/index.html', params);
+  spinner.succeed();
 }
 
 (async () => {
