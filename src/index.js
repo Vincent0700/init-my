@@ -9,7 +9,8 @@ const config = {
   HTML_WEBPACK: {
     name: 'html-webpack',
     repo: 'Vincent0700/html-webpack-template',
-    callback: renderHtmlWebpackTemplate
+    callback: renderHtmlWebpackTemplate,
+    sources: ['package.json', 'package-lock.json', 'README.md', 'public/index.html']
   }
 };
 
@@ -60,10 +61,7 @@ function renderSync(filepath, params) {
  */
 function renderHtmlWebpackTemplate(params) {
   const spinner = ora('Initializing project ...').start();
-  renderSync('package.json', params);
-  renderSync('package-lock.json', params);
-  renderSync('README.md', params);
-  renderSync('public/index.html', params);
+  config.HTML_WEBPACK.sources.map((filepath) => renderSync(filepath, params));
   spinner.succeed();
 }
 
@@ -89,10 +87,6 @@ function renderHtmlWebpackTemplate(params) {
   await fetchRepo(template.repo, projectName || template.name);
 
   // render template
-  template.callback({
-    name: projectName,
-    author,
-    email,
-    description
-  });
+  const params = { name: projectName, author, email, description };
+  template.callback(params);
 })();
