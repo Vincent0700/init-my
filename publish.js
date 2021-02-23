@@ -7,6 +7,7 @@ const process = require('child_process');
 const npmLatest = require('npm-latest');
 const utils = require('./src/utils');
 const pkg = require('./package.json');
+const { version } = require('webpack');
 
 /**
  * Choose version type
@@ -28,6 +29,8 @@ async function selectVersion() {
     filter: (value) => versionTypeChoices.indexOf(value)
   });
   versions[versionType]++;
+  if (versionType < 2) versions[2] = 0;
+  if (versionType < 1) version[1] = 0;
   pkg.version = versions.join('.');
 }
 

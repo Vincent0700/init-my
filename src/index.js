@@ -11,6 +11,12 @@ const config = {
     repo: 'Vincent0700/html-webpack-template',
     callback: renderHtmlWebpackTemplate,
     sources: ['package.json', 'package-lock.json', 'README.md', 'public/index.html']
+  },
+  HTML_WEBPACK_TS: {
+    name: 'html-webpack-ts',
+    repo: 'Vincent0700/html-webpack-ts-template',
+    callback: renderHtmlWebpackTsTemplate,
+    sources: ['package.json', 'package-lock.json', 'README.md', 'public/index.html']
   }
 };
 
@@ -60,6 +66,17 @@ function renderSync(filepath, params) {
  * @param {object} params
  */
 function renderHtmlWebpackTemplate(params) {
+  const spinner = ora('Initializing project ...').start();
+  config.HTML_WEBPACK.sources.map((filepath) => renderSync(filepath, params));
+  spinner.succeed();
+}
+
+/**
+ * Render Html-Webpack-Typescript-Template
+ * @link https://github.com/Vincent0700/html-webpack-ts-template.git
+ * @param {object} params
+ */
+function renderHtmlWebpackTsTemplate(params) {
   const spinner = ora('Initializing project ...').start();
   config.HTML_WEBPACK.sources.map((filepath) => renderSync(filepath, params));
   spinner.succeed();
