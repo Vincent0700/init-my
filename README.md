@@ -4,13 +4,6 @@ Personal use cli tool for creating startup project from template.
 
 ## ▩ Usage
 
-```bash
-$ npm i init-my
-$ init-my
-```
-
-OR
-
 ```
 $ npx init-my
 Need to install the following packages:
@@ -28,5 +21,6 @@ Ok to proceed? (y)
 ## ▩ Templates
 
 - [html-webpack](https://github.com/Vincent0700/html-webpack-template.git)
+- [html-webpack-ts](https://github.com/Vincent0700/html-webpack-ts-template.git)
 
 ## ▩ [CHANGELOG](./CHANGELOG.md)
