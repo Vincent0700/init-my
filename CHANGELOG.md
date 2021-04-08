@@ -10,3 +10,9 @@
 ```
 1. Add html-webpack-ts template
 ```
+
+## v1.2.0
+
+```
+1. Add webpack5-vue2-ts-lib template
+```

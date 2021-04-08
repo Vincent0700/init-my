@@ -17,6 +17,12 @@ const config = {
     repo: 'Vincent0700/html-webpack-ts-template',
     callback: renderHtmlWebpackTsTemplate,
     sources: ['package.json', 'package-lock.json', 'README.md', 'public/index.html']
+  },
+  WEBPACK5_VUE2_TS_LIB: {
+    name: 'webpack5-vue2-ts-lib',
+    repo: 'Vincent0700/webpack5-vue2-ts-lib-template',
+    callback: renderWebpack5Vue2TsLibTemplate,
+    sources: ['package.json', 'package-lock.json', 'README.md', 'public/index.html']
   }
 };
 
@@ -78,7 +84,18 @@ function renderHtmlWebpackTemplate(params) {
  */
 function renderHtmlWebpackTsTemplate(params) {
   const spinner = ora('Initializing project ...').start();
-  config.HTML_WEBPACK.sources.map((filepath) => renderSync(filepath, params));
+  config.HTML_WEBPACK_TS.sources.map((filepath) => renderSync(filepath, params));
+  spinner.succeed();
+}
+
+/**
+ * Render Webpack5-VUE2-Typescript-Library-Template
+ * @link https://github.com/Vincent0700/webpack5-vue2-ts-lib-template.git
+ * @param {object} params
+ */
+function renderWebpack5Vue2TsLibTemplate(params) {
+  const spinner = ora('Initializing project ...').start();
+  config.WEBPACK5_VUE2_TS_LIB.sources.map((filepath) => renderSync(filepath, params));
   spinner.succeed();
 }
 
