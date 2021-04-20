@@ -22,5 +22,6 @@ Ok to proceed? (y)
 
 - [html-webpack](https://github.com/Vincent0700/html-webpack-template.git)
 - [html-webpack-ts](https://github.com/Vincent0700/html-webpack-ts-template.git)
+- [webpack5-vue2-ts-lib](https://github.com/Vincent0700/webpack5-vue2-ts-lib-template.git)
 
 ## ▩ [CHANGELOG](./CHANGELOG.md)
